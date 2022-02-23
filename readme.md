@@ -10,18 +10,118 @@ To develop this project, I'll use several existing APIs from different sources, 
 
 ## APIs Documentation
 
-todo
+IPGP's datacenter provides us European and International structures like:
+```
+- https://www.resif.fr/
+- http://www.orfeus-eu.org/data/eida/
+- https://www.epos-eu.org/
+- http://www.fdsn.org/
+- http://ds.iris.edu/ds/nodes/dmc/
+- https://pds.nasa.gov/
+```
 
-## First objective
+1. RESIF
 
-### Get signals data and stations informations from different sources
+RESIF makes available url builder tools for different kind of data.
 
-todo
+Dataselect url builder (<code>https://seismology.resif.fr/dataselect/#/</code>) provides miniseed file with all corresponding data [develop]
 
-### Export data with .mat format
+```
+https://ws.resif.fr/fdsnws/dataselect/1/query?network=GL&station=TDBSM&location=00&quality=B&channel=EH1,EH2,EHZ&nodata=204
+```
 
-todo
+This mseed file can be opened in Octave or Matlab thanks to existing mseed dedicated files, <code>rdmseed.m</code> and <code>mkmseed.m</code>. To read mseed file we just have to run the following command <code>X = rdmseed(filename)</code>. This operation can take a while according to the file size.
 
-### Use poles and zeros of sensor to plot signals in m.s-1
+Station url builder (<code>https://seismology.resif.fr/dataselect/#/</code>) provides station informations. The corresponding response will provide the following informations:
 
-todo
+```
+- Network
+- Station
+- Location
+- Channel
+- Latitude
+- Longitude
+- Elevation
+- Depth
+- Azimuth
+- Dip
+- SensorDescription
+- Scale
+- ScaleFreq
+- ScaleUnits
+- SampleRate
+- StartTime
+- EndTime
+```
+
+```
+https://ws.resif.fr/fdsnws/station/1/query?network=GL&station=TDBSM&location=00&channel=EH1,EH2,EHZ&includerestricted=true&level=channel&format=text&nodata=404
+```
+
+2. Orfeus
+
+Orfeus let us send request like 
+
+```
+http://www.orfeus-eu.org/fdsnws/dataselect/1/query?network=NL&station=HGN&start=2017-01-01T00:00:00&end=2017-01-01T00:01:00
+```
+which gives us mseed file.
+
+All the possible parameters are listed on this webpage: <code>http://www.orfeus-eu.org/data/eida/webservices/dataselect/</code>
+
+But we also can send station request like
+
+```
+http://www.orfeus-eu.org/fdsnws/station/1/query?network=NL&station=HGN&level=response
+```
+3. EPOS
+
+do it later
+
+4. FDSN
+
+This provider lets us send different types of requests. I'll list them here without to give any details. I'll focus on this provider later.
+
+```
+- https://www.fdsn.org/ws/datacenters/1/query
+- https://www.fdsn.org/ws/datacenters/1/query?name=IRISDMC
+- https://www.fdsn.org/ws/datacenters/1/query?services=%2A-dataselect-1
+```
+
+5. IRIS
+
+Thanks to IRIS provider, we can get networks code informations
+
+```
+- Network
+- Description
+- StartTime
+- EndTime
+- TotalStations
+```
+
+thanks to this request <code>http://service.iris.edu/fdsnws/station/1/query?level=network&nodata=404&format=text</code>
+
+I think that it could be interested to develop the features given by this link <code>http://ds.iris.edu/ds/nodes/dmc/data/</code>
+
+6. NASA
+
+To do later
+
+## First main step
+
+1. Get signals data and stations informations from different sources
+
+Actual seismic network provides us different data from different sources or networks. The data's format can change according to given provenance. So the main goal here is to fetch correctly this data and to arrange them to make them uniform.
+
+2. Export data with .mat format
+
+All those data coming from different sources should be exportable in given format, ideally .mat. This format is frequently used by the research team, so it is a recommended format.
+
+3. Use poles and zeros of sensor to plot signals in m/s
+
+Actually, data are plotted in a two dimensions graph. Abscissa axis represents the date where the samples were taken. The ordinate axis unit is counts but it is strongly recommended to plot data on the ordinate axis using m/s unit. To compute this conversion, we have to use poles and zeros of used sensor.
+
+## Second main step
+
+Superimpose signals representation on a map to improve seismic evenenments analysis. We have to develop this part later when the first main step will be usable.
