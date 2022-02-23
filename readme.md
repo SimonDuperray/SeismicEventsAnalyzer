@@ -1,3 +1,3 @@
 # Seismic Events Analyzer
 
-We splitted this project into three different steps. I'll describer them later.
+We've splitted this project into three different steps. I'll describe them later.
