@@ -1,3 +1,3 @@
 # Seismic Events Analyzer
 
-todo
+Split project in three different steps/packages
