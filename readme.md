@@ -130,13 +130,12 @@ Once all data are fetched and/or imported, they're sent to data script for execu
 
 <br/>
 
-I'll explane more precisely the two following steps later, when I got further in the project.
+<code>I'll explane more precisely the two following steps later, when I got further in the project.</code>
 
 <br/>
 2. Export data with .mat format
 
 All those data coming from different sources should be exportable in given format, ideally .mat. This format is frequently used by the research team, so it is a recommended format.
-
 3. Use poles and zeros of sensor to plot signals in m/s
 
 Actually, data are plotted in a two dimensions graph. Abscissa axis represents the date where the samples were taken. The ordinate axis unit is counts but it is strongly recommended to plot data on the ordinate axis using m/s unit. To compute this conversion, we have to use poles and zeros of used sensor.
