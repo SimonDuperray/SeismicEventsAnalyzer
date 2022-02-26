@@ -112,7 +112,7 @@ I think that it could be interested to develop the features given by this link <
 
 To do later
 
-## First main step
+## First main steps
 
 1. Get signals data and stations informations from different sources
 
@@ -128,6 +128,11 @@ First of all, the entire architecture will be hosted on my personal Raspberry Pi
 I'll create a Tkinter interface with Python to choose the desired data sources and import local data from NAS server by example.
 Once all data are fetched and/or imported, they're sent to data script for execute data processing. When the data are processed, they're sent to a time-series database (InfluxDB) to be easily displayed on Grafana interface. This Grafana interface is optional for this first step. But it is the techno I'll use for the further tasks so I think it's beneficial to use it right now.
 
+<br/>
+
+I'll explane more precisely the two following steps later, when I got further in the project.
+
+<br/>
 2. Export data with .mat format
 
 All those data coming from different sources should be exportable in given format, ideally .mat. This format is frequently used by the research team, so it is a recommended format.
